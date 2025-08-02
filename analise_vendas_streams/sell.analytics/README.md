@@ -1,67 +1,45 @@
-# sell.analytics
+🧠 Projeto: Análise de Vendas com Java Streams
+📝 Enunciado
+Você foi contratado para desenvolver um pequeno módulo de análise de vendas de uma loja online. A loja possui um sistema que gera uma lista de objetos Venda, e agora precisa de funcionalidades para extrair informações de forma funcional usando a API de Streams do Java.
 
-This project uses Quarkus, the Supersonic Subatomic Java Framework.
+🧾 Classe Venda
+```java
+public class Venda {
+    private String vendedor;
+    private String produto;
+    private int quantidade;
+    private double precoUnitario;
+    private LocalDate data;
 
-If you want to learn more about Quarkus, please visit its website: <https://quarkus.io/>.
-
-## Running the application in dev mode
-
-You can run your application in dev mode that enables live coding using:
-
-```shell script
-./mvnw quarkus:dev
+    // Construtor, getters e toString
+}
 ```
 
-> **_NOTE:_**  Quarkus now ships with a Dev UI, which is available in dev mode only at <http://localhost:8080/q/dev/>.
+🎯 Desafios obrigatórios
+Implemente funcionalidades usando Streams para responder às seguintes perguntas:
 
-## Packaging and running the application
+Total de vendas realizadas no ano atual.
 
-The application can be packaged using:
+Lista de produtos vendidos em ordem alfabética (sem duplicados).
 
-```shell script
-./mvnw package
-```
+Nome do vendedor com maior valor total em vendas.
 
-It produces the `quarkus-run.jar` file in the `target/quarkus-app/` directory.
-Be aware that it’s not an _über-jar_ as the dependencies are copied into the `target/quarkus-app/lib/` directory.
+Lista de vendas com valor total maior que R$ 1.000,00.
 
-The application is now runnable using `java -jar target/quarkus-app/quarkus-run.jar`.
+Mapa com a soma total de vendas por vendedor (Map<String, Double>).
 
-If you want to build an _über-jar_, execute the following command:
+Valor médio de uma venda (considerando quantidade × preço unitário).
 
-```shell script
-./mvnw package -Dquarkus.package.jar.type=uber-jar
-```
+Vendas agrupadas por mês do ano (Map<Month, List<Venda>).
 
-The application, packaged as an _über-jar_, is now runnable using `java -jar target/*-runner.jar`.
+Top 3 produtos mais vendidos em quantidade total.
 
-## Creating a native executable
+💡 Extras desafiadores (opcional)
+Liste os dias da semana com maior volume de vendas.
 
-You can create a native executable using:
+Gere uma lista de strings no formato: "Pedro vendeu 5 unidades de Monitor por R$1500.00 em 2024-07-31".
 
-```shell script
-./mvnw package -Dnative
-```
+📂 Dicas
+Use Collectors.toMap(), groupingBy(), summarizingDouble(), sorted(), limit(), map(), flatMap() e distinct().
 
-Or, if you don't have GraalVM installed, you can run the native executable build in a container using:
-
-```shell script
-./mvnw package -Dnative -Dquarkus.native.container-build=true
-```
-
-You can then execute your native executable with: `./target/sell.analytics-1.0.0-SNAPSHOT-runner`
-
-If you want to learn more about building native executables, please consult <https://quarkus.io/guides/maven-tooling>.
-
-## Related Guides
-
-- JDBC Driver - H2 ([guide](https://quarkus.io/guides/datasource)): Connect to the H2 database via JDBC
-- RESTEasy Classic ([guide](https://quarkus.io/guides/resteasy)): REST endpoint framework implementing Jakarta REST and more
-
-## Provided Code
-
-### RESTEasy JAX-RS
-
-Easily start your RESTful Web Services
-
-[Related guide section...](https://quarkus.io/guides/getting-started#the-jax-rs-resources)
+Evite loops imperativos — a ideia é resolver tudo com Streams.
