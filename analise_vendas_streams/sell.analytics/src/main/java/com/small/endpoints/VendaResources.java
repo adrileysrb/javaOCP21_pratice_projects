@@ -42,4 +42,22 @@ public class VendaResources {
     public Response question03() {
         return Response.ok(Map.of("nome", service.question03())).build();
     }
+    
+    @GET @Produces(MediaType.APPLICATION_JSON)
+    @Path("/question04")
+    public Response question04() {
+        return Response.ok(service.question04()).build();
+    }
+    
+    @GET @Produces(MediaType.APPLICATION_JSON)
+    @Path("/question05")
+    public Response question05() {
+        return Response.ok(service.question05()).build();
+    }
+    
+    @GET @Produces(MediaType.APPLICATION_JSON)
+    @Path("/question07")
+    public Response question07() {
+        return Response.ok(service.question07()).build();
+    }
 }
