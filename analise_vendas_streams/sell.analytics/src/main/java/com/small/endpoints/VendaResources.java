@@ -60,4 +60,12 @@ public class VendaResources {
     public Response question07() {
         return Response.ok(service.question07()).build();
     }
+
+    @GET @Produces(MediaType.APPLICATION_JSON)
+    @Path("/question08")
+    public Response question08() {
+        return Response.ok(service.question08()).build();
+    }
+
+    
 }

@@ -6,6 +6,7 @@ import java.util.LinkedHashMap;
 import java.util.stream.Collectors;
 import java.time.LocalDate;
 import java.util.Comparator;
+import java.util.HashMap;
 import java.util.IntSummaryStatistics;
 
 import jakarta.enterprise.context.ApplicationScoped;
@@ -100,6 +101,20 @@ public class VendaService {
                 Map<String, List<Venda>> result = allSellings.stream().collect(
                                 Collectors.groupingBy(value -> value.getData().getMonth().toString(),
                                                 Collectors.toList()));
+                return result;
+        }
+
+        public Map<String, Integer> question08() {
+                List<Venda> allSellings = repository.listAll();
+
+                Map<String, Integer> result = allSellings.stream()
+                                .collect(Collectors.groupingBy(value -> value.getProduto(),
+                                                Collectors.summingInt(Venda::getQuantidade)))
+                                .entrySet().stream().sorted(Map.Entry.<String, Integer>comparingByValue().reversed())
+                                .limit(3)
+                                .collect(Collectors.toMap(Map.Entry::getKey,
+                                                Map.Entry::getValue, (e1, e2) -> e1, LinkedHashMap::new));
+
                 return result;
         }
 
